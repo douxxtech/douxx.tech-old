@@ -166,7 +166,7 @@ $jsFiles = getJsFiles();
                 </h1>
                 
                 <p class="profile-bio">
-                    <?php echo htmlspecialchars($config['bio']); ?>
+                    <?php echo nl2br(htmlspecialchars($config['bio'])); ?>
                 </p>
             </div>
         </div>
