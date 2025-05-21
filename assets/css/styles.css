@@ -16,7 +16,6 @@ body {
     overflow: hidden;
 }
 
-/* Space background */
 .space-bg {
     position: fixed;
     top: 0;
@@ -70,7 +69,6 @@ body {
     100% { transform: translate(-5%, 5%); }
 }
 
-/* Profile card */
 .profile-card {
     background-color: rgba(30, 30, 40, 0.75);
     backdrop-filter: blur(10px);
@@ -114,7 +112,6 @@ body {
     object-fit: cover;
 }
 
-/* Status ring around avatar */
 .status-ring {
     position: absolute;
     top: -4px;
@@ -155,7 +152,6 @@ body {
     margin-bottom: 10px;
 }
 
-/* Buttons */
 .social-links {
     display: flex;
     width: 100%;
@@ -202,7 +198,6 @@ body {
     object-fit: contain;
 }
 
-/* Dropdown menus */
 .dropdown-container {
     position: relative;
     flex: 1;
@@ -319,6 +314,10 @@ body {
     
     .dropdown-container {
         width: 100%;
+    }
+
+    body {
+        overflow: auto;
     }
 }
 
