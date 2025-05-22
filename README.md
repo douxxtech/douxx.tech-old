@@ -7,7 +7,7 @@ A dynamic, responsive profile page that integrates with Discord's Lanyard API to
 ## Features
 
 - 🎮 **Discord Integration**: Real-time status, avatar, and username via Lanyard API
-- 🎨 **Customizable Design**: Space-themed background with nebula effects
+- 🎨 **Customizable Design**: Everything can be customized in a single file
 - 🔗 **Social Links**: Support for multiple social media buttons
 - 📱 **Responsive Design**: Works perfectly on all devices
 - 🎯 **Dropdown Menus**: Group multiple links under dropdown buttons
