@@ -2,14 +2,14 @@
     "title": "Hello, visitor !",
     "name": "ζDouxx.tech",
     "bio": "Heya, I'm a 15 Years old Swiss student (he) at the Neuchâtel Vocational Training Center :]\nI also code cool things on my free time most of them are opensource!",
-    "profileImage": "assets/img/profile.png",
+    "profileImage": "assets/img/pfp.webp",
     "backgroundImage": "assets/img/bg.jpg",
     "favicon": "assets/img/favicon.ico",
-    "siteIcon": "assets/img/profile.png",
+    "siteIcon": "assets/img/icon.png",
     "discord": {
         "enabled": true,
         "discordId": "1117912749146656790",
-        "useAvatar": true,
+        "useAvatar": false,
         "useUsername": false,
         "showStatus": true
     },
@@ -17,7 +17,7 @@
         "title": "ζDouxx.tech",
         "description": "Hello, world !",
         "color": "#FF9A56",
-        "thumbnail_url": "https://tests.dpip.lol/v2/assets/img/profile.png"
+        "thumbnail_url": "https://douxx.tech/assets/img/icon.png"
     },
     "buttons": [
         {
