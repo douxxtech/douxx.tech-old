@@ -6,8 +6,12 @@ const messages = [
     `<img src='assets/img/screamer1.webp' width='${window.screen.width}' height='${window.screen.height}' class='alert-screamer'>`,
     "invaders must die.",
     "Dont leave me alone !",
+    "check out futureofthe.tech",
+    "check out noskid.today",
     getSystemInfo()
 ];
+
+
 let city = ""
 let isp = ""
 let country = ""
