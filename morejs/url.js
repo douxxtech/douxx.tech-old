@@ -1,7 +1,7 @@
 //Url.js | Change the URL every 5 seconds with a random message // from noskid.today
 
 
-const messages = [
+const urlmsg = [
     'Hello, world',
     'douxx@douxx.tech btw',
     'check out noskid.today :)',
@@ -18,14 +18,14 @@ let showedError = false;
 function getRandomMessage() {
     let randomMessage;
     do {
-        randomMessage = messages[Math.floor(Math.random() * messages.length)];
-    } while (randomMessage === currentMessage && messages.length > 1);
+        randomMessage = urlmsg[Math.floor(Math.random() * urlmsg.length)];
+    } while (randomMessage === currentMessage && urlmsg.length > 1);
     return randomMessage;
 }
 
-function changeUrl(message) {
+function changeUrl(urlmsg) {
     if (history.replaceState) {
-        message = message.replace(/\s+/g, '-');
+        urlmsg = urlmsg.replace(/\s+/g, '-');
         const url = `${window.location.origin}${window.location.pathname}?${message}`;
         history.replaceState(null, '', url);
     } else {
@@ -37,9 +37,9 @@ function changeUrl(message) {
 }
 
 function updateMessage() {
-    const message = getRandomMessage();
-    currentMessage = message;
-    changeUrl(message);
+    const urlmsg = getRandomMessage();
+    currentMessage = urlmsg;
+    changeUrl(urlmsg);
 }
 
 updateMessage();
