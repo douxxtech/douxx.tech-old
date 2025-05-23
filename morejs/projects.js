@@ -28,6 +28,7 @@ window.spawnProjects =function () {
         resizable: true,
         height: 400,
         width: 600,
+        theme: 'dark',
         x: (window.innerWidth - 600) / 2,
         y: (window.innerHeight - 400) / 2,
         content: loadingContent,
