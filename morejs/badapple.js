@@ -37,7 +37,7 @@ async function playBadApl(event) {
 
     function displayFrame() {
       if (currentFrame >= validFrames.length) {
-        log('BadApl console playback finished', 'success');
+        console.log('BadApl console playback finished');
         if (playbackInterval) clearInterval(playbackInterval);
         return;
       }
