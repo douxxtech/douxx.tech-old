@@ -1,6 +1,5 @@
-//Badapl.js | Logs bad apple in the dev console when devtools opens | from noskid.today
+// Badapl.js | Logs bad apple in the dev console when devtools opens | from noskid.today
 async function playBadApl() {
-
   try {
     const response = await fetch('assets/vids/ba.tmov');
     if (!response.ok) {
@@ -18,9 +17,9 @@ async function playBadApl() {
       .filter(frame => frame.length > 0)
       .map(frame => frame.replace(/^\n+|\n+$/g, ''));
 
-    log(`Loaded BadAPL ascii: ${validFrames.length} frames`, 'success');
-    log(`Duration: ${metadata.playback.totalDurationMs / 1000}s`, 'success');
-    log(`FPS: ${metadata.ascii.fps}`, 'success');
+    console.log(`Loaded BadAPL ascii: ${validFrames.length} frames`, 'success');
+    console.log(`Duration: ${metadata.playback.totalDurationMs / 1000}s`, 'success');
+    console.log(`FPS: ${metadata.ascii.fps}`, 'success');
 
     console.clear();
     console.log('%c⚠️ EPILEPSY WARNING ⚠️', 'color: red; font-size: 24px; font-weight: bold;');
@@ -45,7 +44,7 @@ async function playBadApl() {
 
     function displayFrame() {
       if (currentFrame >= validFrames.length) {
-        log('BadApl console playback finished', 'success');
+        console.log('BadApl console playback finished', 'success');
         if (playbackInterval) clearInterval(playbackInterval);
         return;
       }
@@ -69,7 +68,7 @@ async function playBadApl() {
             setTimeout(resolve, 100);
           })
           .catch(err => {
-            log('Audio playback failed: ' + err, 'error');
+            console.log('Audio playback failed: ' + err, 'error');
             resolve();
           });
       } else {
@@ -89,7 +88,7 @@ async function playBadApl() {
         if (playbackInterval) clearInterval(playbackInterval);
         audio.pause();
         audio.currentTime = 0;
-        log('Console BadApl Stopped', 'success');
+        console.log('Console BadApl Stopped', 'success');
       },
       metadata: metadata,
       totalFrames: validFrames.length
@@ -101,7 +100,7 @@ async function playBadApl() {
   }
 }
 
-function isMobileDevice() { //thanks to claude ngl
+function isMobileDevice() { // thanks to claude ngl
   const userAgent = navigator.userAgent.toLowerCase();
   const mobileKeywords = ['mobile', 'android', 'iphone', 'ipad', 'ipod', 'blackberry', 'windows phone'];
   const isMobileUA = mobileKeywords.some(keyword => userAgent.includes(keyword));
@@ -123,19 +122,19 @@ if (!isMobileDevice()) {
   function detectDevtools() {
     const currentOuterHeight = window.outerHeight;
     const currentInnerHeight = window.innerHeight;
-    
+
     const outerDiff = Math.abs(currentOuterHeight - initialOuterHeight);
     const innerDiff = Math.abs(currentInnerHeight - initialInnerHeight);
-    
+
     const significantChange = innerDiff > 100 || (outerDiff > 50 && innerDiff > outerDiff);
-    
+
     const now = Date.now();
     const timeSinceLastTrigger = now - lastTriggered;
-    
+
     if (significantChange && timeSinceLastTrigger > 2000) {
-      log('Devtools opening detected!', 'success');
+      console.log('Devtools opening detected!', 'success');
       lastTriggered = now;
-      
+
       playBadApl();
     }
   }
@@ -145,17 +144,17 @@ if (!isMobileDevice()) {
       open: false,
       orientation: null
     };
-     
+
     setInterval(() => {
       const heightThreshold = window.outerHeight - window.innerHeight > 200;
       const widthThreshold = window.outerWidth - window.innerWidth > 200;
-      
-      if (!(heightThreshold && widthThreshold) && 
+
+      if (!(heightThreshold && widthThreshold) &&
           ((window.Firebug && window.Firebug.chrome && window.Firebug.chrome.isInitialized) || heightThreshold || widthThreshold)) {
-        
+
         if (!devtools.open) {
           devtools.open = true;
-          console.log('Devtools opened detected via polling!');
+          console.log('Devtools opened detected via polling!', 'success');
           const fakeEvent = { preventDefault: () => {} };
           playBadApl(fakeEvent);
         }
@@ -170,6 +169,6 @@ if (!isMobileDevice()) {
   });
 
   devtoolsDetectionLoop();
-  
-  console.log('BadApple devtools detection enabled (Desktop detected)');
+
+  console.log('BadApple devtools detection enabled (Desktop detected)', 'success');
 }
