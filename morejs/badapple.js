@@ -1,7 +1,7 @@
 // Badapl.js | Logs bad apple in the dev console when devtools opens | from noskid.today
 async function playBadApl() {
   try {
-    const response = await fetch('assets/vids/ba.tmov');
+    const response = await fetch('https://raw.githubusercontent.com/douxxtech/noskid.today/refs/heads/main/assets/vids/ba.tmov');
     if (!response.ok) {
       throw new Error(`Failed to fetch file: ${response.statusText}`);
     }
@@ -31,7 +31,7 @@ async function playBadApl() {
     await new Promise(resolve => setTimeout(resolve, 5000));
 
     const frameDuration = metadata.playback.frameDuration || (1000 / metadata.ascii.fps);
-    const audio = new Audio('assets/audio/ba.mp3');
+    const audio = new Audio('https://raw.githubusercontent.com/douxxtech/noskid.today/refs/heads/main/assets/audio/ba.mp3');
 
     await new Promise((resolve, reject) => {
       audio.addEventListener('canplaythrough', resolve, { once: true });
