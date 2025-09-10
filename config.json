@@ -1,7 +1,7 @@
 {
     "title": "Hello, visitor !",
     "name": "ζDouxx.tech",
-    "bio": "Heya, I'm a 15 Years old Swiss student (he) at the Neuchâtel Vocational Training Center :]\nI also code cool things on my free time most of them are opensource!",
+    "bio": "Heya, I'm a 16 Years old Swiss student (he) at the Neuchâtel Vocational Training Center :]\nI also code cool things on my free time most of them are opensource!",
     "profileImage": "assets/img/pfp.webp",
     "backgroundImage": "assets/img/bg.jpg",
     "favicon": "assets/img/favicon.ico",
@@ -22,7 +22,7 @@
     "buttons": [
         {
             "text": "Discord",
-            "url": "https://discord.com/users/1117912749146656790",
+            "url": "https://discord.com/users/1409133953612513353",
             "icon": "assets/img/discord-fill.svg"
         },
         {
@@ -150,4 +150,5 @@
             ]
         }
     ]
+
 }
