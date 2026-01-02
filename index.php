@@ -1,6 +1,15 @@
 <?php
 $config = json_decode(file_get_contents('config.json'), true);
 
+// curl/wget/terminal user agents
+$userAgent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
+$isCurl = (
+    stripos($userAgent, 'curl') !== false ||
+    stripos($userAgent, 'wget') !== false ||
+    stripos($userAgent, 'httpie') !== false ||
+    stripos($userAgent, 'fetch') !== false
+);
+
 function getLanyardData($discordId) {
     $url = "https://api.lanyard.rest/v1/users/" . $discordId;
     $options = [
@@ -32,6 +41,160 @@ function getLanyardData($discordId) {
     return ['debug' => $debug, 'data' => $decoded];
 }
 
+// Terminal/curl output
+if ($isCurl) {
+    header('Content-Type: text/plain; charset=utf-8');
+    
+    // Catppuccin Mocha palette
+    $colors = [
+        'reset' => "\033[0m",
+        'bold' => "\033[1m",
+        'dim' => "\033[2m",
+        'rosewater' => "\033[38;2;245;224;220m",
+        'flamingo' => "\033[38;2;242;205;205m",
+        'pink' => "\033[38;2;245;194;231m",
+        'mauve' => "\033[38;2;203;166;247m",
+        'red' => "\033[38;2;243;139;168m",
+        'maroon' => "\033[38;2;235;160;172m",
+        'peach' => "\033[38;2;250;179;135m",
+        'yellow' => "\033[38;2;249;226;175m",
+        'green' => "\033[38;2;166;227;161m",
+        'teal' => "\033[38;2;148;226;213m",
+        'sky' => "\033[38;2;137;220;235m",
+        'sapphire' => "\033[38;2;116;199;236m",
+        'blue' => "\033[38;2;137;180;250m",
+        'lavender' => "\033[38;2;180;190;254m",
+        'text' => "\033[38;2;205;214;244m",
+        'subtext1' => "\033[38;2;186;194;222m",
+        'subtext0' => "\033[38;2;166;173;200m",
+        'overlay2' => "\033[38;2;147;153;178m",
+        'overlay1' => "\033[38;2;127;132;156m",
+        'overlay0' => "\033[38;2;108;112;134m",
+        'surface2' => "\033[38;2;88;91;112m",
+        'surface1' => "\033[38;2;69;71;90m",
+        'surface0' => "\033[38;2;49;50;68m",
+    ];
+    
+    $discordStatus = null;
+    $discordUsername = null;
+    if (isset($config['discord']) && $config['discord']['enabled'] && !empty($config['discord']['discordId'])) {
+        $lanyardResponse = getLanyardData($config['discord']['discordId']);
+        if ($lanyardResponse['data'] && isset($lanyardResponse['data']['success']) && $lanyardResponse['data']['success']) {
+            $data = $lanyardResponse['data']['data'];
+            if ($config['discord']['showStatus'] && isset($data['discord_status'])) {
+                $discordStatus = $data['discord_status'];
+            }
+            if ($config['discord']['useUsername'] && isset($data['discord_user']['global_name'])) {
+                $discordUsername = $data['discord_user']['global_name'];
+            }
+        }
+    }
+    
+    $name = $discordUsername ?? $config['name'];
+    $bio = $config['bio'];
+    
+    // status indicator
+    $statusEmoji = '';
+    $statusColor = '';
+    $statusText = '';
+    if ($discordStatus) {
+        switch($discordStatus) {
+            case 'online':
+                $statusEmoji = '●';
+                $statusColor = $colors['green'];
+                $statusText = 'Online';
+                break;
+            case 'idle':
+                $statusEmoji = '●';
+                $statusColor = $colors['yellow'];
+                $statusText = 'Idle';
+                break;
+            case 'dnd':
+                $statusEmoji = '●';
+                $statusColor = $colors['red'];
+                $statusText = 'Do Not Disturb';
+                break;
+            case 'offline':
+                $statusEmoji = '●';
+                $statusColor = $colors['overlay0'];
+                $statusText = 'Offline';
+                break;
+        }
+    }
+    
+    $boxWidth = 64;
+    
+    $output = "\n\n";
+    $output .= $colors['mauve'] . $colors['bold'];
+    $output .= "  ╔" . str_repeat("═", $boxWidth - 2) . "╗\n";
+    $output .= "  ║" . str_repeat(" ", $boxWidth - 2) . "║\n";
+    
+    $nameLen = mb_strlen($name);
+    $namePadding = floor(($boxWidth - 2 - $nameLen) / 2);
+    $nameLeftPad = str_repeat(" ", $namePadding);
+    $nameRightPad = str_repeat(" ", $boxWidth - 2 - $nameLen - $namePadding);
+    $output .= "  ║" . $nameLeftPad . $colors['lavender'] . $colors['bold'] . $name . $colors['reset'] . $colors['mauve'] . $colors['bold'] . $nameRightPad . "║\n";
+    
+    if ($discordStatus && $statusText) {
+        // Status line with emoji and text
+        $statusLineVisible = $statusEmoji . " " . $statusText;
+        $statusLen = mb_strlen($statusLineVisible);
+        $statusPadding = floor(($boxWidth - 2 - $statusLen) / 2);
+        $statusLeftPad = str_repeat(" ", $statusPadding);
+        $statusRightPad = str_repeat(" ", $boxWidth - 2 - $statusLen - $statusPadding);
+        $output .= "  ║" . $statusLeftPad . $statusColor . $statusEmoji . " " . $statusText . $colors['reset'] . $colors['mauve'] . $colors['bold'] . $statusRightPad . "║\n";
+    }
+    
+    $output .= "  ║" . str_repeat(" ", $boxWidth - 2) . "║\n";
+    $output .= "  ╚" . str_repeat("═", $boxWidth - 2) . "╝\n";
+    $output .= $colors['reset'];
+    
+    $output .= "\n" . $colors['text'];
+    $bioLines = explode("\n", wordwrap($bio, 66, "\n", false));
+    foreach ($bioLines as $line) {
+        $output .= "  " . $line . "\n";
+    }
+    $output .= $colors['reset'] . "\n";
+    
+    // links
+    $output .= $colors['blue'] . $colors['bold'] . "  ╔" . str_repeat("═", 66) . "╗" . $colors['reset'] . "\n";
+    $output .= $colors['blue'] . $colors['bold'] . "  ║ " . $colors['pink'] . "🔗 LINKS" . $colors['blue'] . str_repeat(" ", 57) . "║" . $colors['reset'] . "\n";
+    $output .= $colors['blue'] . $colors['bold'] . "  ╚" . str_repeat("═", 66) . "╝" . $colors['reset'] . "\n\n";
+    
+    foreach ($config['buttons'] as $index => $button) {
+        if (isset($button['dropdown']) && $button['dropdown']) {
+            // dropdown section
+            $output .= $colors['peach'] . $colors['bold'] . "  ▸ " . $button['text'] . $colors['reset'] . "\n";
+            $itemCount = count($button['items']);
+            foreach ($button['items'] as $idx => $item) {
+                $isLast = ($idx === $itemCount - 1);
+                $branch = $isLast ? "└" : "├";
+                $output .= $colors['sapphire'] . "    " . $branch . "─ " . $colors['text'] . $item['text'] . $colors['reset'] . "\n";
+                $output .= $colors['overlay0'] . "       " . $item['url'] . $colors['reset'] . "\n";
+            }
+            $output .= "\n";
+        } elseif (!isset($button['jsFunction'])) {
+            // reg link
+            $output .= $colors['green'] . "  ▸ " . $colors['text'] . $colors['bold'] . $button['text'] . $colors['reset'] . "\n";
+            $output .= $colors['overlay0'] . "    " . $button['url'] . $colors['reset'] . "\n\n";
+        }
+    }
+    
+    $output .= $colors['surface2'] . "  " . str_repeat("─", 68) . $colors['reset'] . "\n";
+    $output .= $colors['subtext0'] . "  💡 Visit in browser for the full interactive experience\n";
+    
+    if (isset($_SERVER['HTTP_HOST'])) {
+        $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+        $output .= $colors['peach'] . "   ▸ " . $colors['sky'] . $protocol . "://" . $_SERVER['HTTP_HOST'] . $colors['reset'] . "\n";
+    }
+    
+    $output .= $colors['reset'] . "\n";
+    
+    echo $output;
+    exit;
+}
+
+// Regular HTML output continues below
 $lanyardResponse = null;
 $lanyardData = null;
 $discordInfo = [];

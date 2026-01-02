@@ -378,7 +378,6 @@ a::after {
   height: 2px;
   bottom: -2px;
   left: 0;
-  background: linear-gradient(90deg, #60a5fa, #a78bfa);
   transition: width 0.3s ease;
 }
 
