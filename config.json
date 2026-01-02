@@ -8,7 +8,7 @@
     "siteIcon": "assets/img/icon.png",
     "discord": {
         "enabled": true,
-        "discordId": "1117912749146656790",
+        "discordId": "1409133953612513353",
         "useAvatar": false,
         "useUsername": false,
         "showStatus": true
@@ -58,93 +58,34 @@
                     "icon": "assets/img/external-link-line.svg"
                 },
                 {
-                    "text": "2peek",
-                    "url": "https://2peek.me",
-                    "icon": "assets/img/external-link-line.svg"
-                },
-                {
-                    "text": "abcdefghijklmnopqrstuvwxyz",
-                    "url": "https://abcdefghijklmnopqrstuvwxyz.ltd",
-                    "icon": "assets/img/external-link-line.svg"
-                },
-                {
-                    "text": "arizaki",
-                    "url": "https://arizaki.xyz",
-                    "icon": "assets/img/external-link-line.svg"
-                },
-                {
-                    "text": "dbo",
-                    "url": "https://dbo.one",
-                    "icon": "assets/img/external-link-line.svg"
-                },
-                {
-                    "text": "douxx blog",
-                    "url": "https://douxx.blog",
-                    "icon": "assets/img/external-link-line.svg"
-                },
-                {
-                    "text": "douxx tech",
-                    "url": "https://douxx.tech",
-                    "icon": "assets/img/external-link-line.svg"
-                },
-                {
-                    "text": "douxx xyz",
-                    "url": "https://douxx.xyz",
-                    "icon": "assets/img/external-link-line.svg"
-                },
-                {
-                    "text": "dpip",
+                    "text": "DPIP Studio",
                     "url": "https://dpip.lol",
                     "icon": "assets/img/external-link-line.svg"
                 },
+
                 {
-                    "text": "exrazer",
-                    "url": "https://exrazer.xyz",
-                    "icon": "assets/img/external-link-line.svg"
-                },
-                {
-                    "text": "getan email",
-                    "url": "https://getan.email",
-                    "icon": "assets/img/external-link-line.svg"
-                },
-                {
-                    "text": "imaginethisbeingan email",
-                    "url": "https://imaginethisbeingan.email",
-                    "icon": "assets/img/external-link-line.svg"
-                },
-                {
-                    "text": "piwave",
+                    "text": "PiWave",
                     "url": "https://piwave.xyz",
                     "icon": "assets/img/external-link-line.svg"
                 },
                 {
-                    "text": "noskid",
+                    "text": "NoSkid",
                     "url": "https://noskid.today",
                     "icon": "assets/img/external-link-line.svg"
                 },
                 {
-                    "text": "techquest",
-                    "url": "https://techquest.work",
-                    "icon": "assets/img/external-link-line.svg"
-                },
-                {
-                    "text": "theserver life",
+                    "text": "TheServer.life",
                     "url": "https://theserver.life",
                     "icon": "assets/img/external-link-line.svg"
                 },
                 {
-                    "text": "urltoapp",
+                    "text": "UrlToApp",
                     "url": "https://urltoapp.xyz",
                     "icon": "assets/img/external-link-line.svg"
                 },
                 {
-                    "text": "togp",
+                    "text": "TOGP",
                     "url": "https://togp.xyz",
-                    "icon": "assets/img/external-link-line.svg"
-                },
-                {
-                    "text": "writestorm",
-                    "url": "https://writestorm.art",
                     "icon": "assets/img/external-link-line.svg"
                 }
             ]
