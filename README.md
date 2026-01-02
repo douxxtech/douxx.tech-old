@@ -1,6 +1,7 @@
 # Dynamic Profile Page
 
 ![Preview](preview.png)
+![Preview term](preview_term.png)
 
 A dynamic, responsive profile page that integrates with Discord's Lanyard API to display real-time status, avatar, and username information. Perfect for personal websites, portfolios, or social media landing pages.
 
@@ -27,7 +28,7 @@ A dynamic, responsive profile page that integrates with Discord's Lanyard API to
 
 1. **Download/Clone the repository**
    ```bash
-   git clone https://github.com/douxxtech/douxx.tech
+   git clone https://github.com/douxxtech/douxx.tech-old
    cd douxx.tech
    ```
 
@@ -42,14 +43,9 @@ A dynamic, responsive profile page that integrates with Discord's Lanyard API to
 
 ### Option 2: Local Development
 
-1. **Using PHP's built-in server**
    ```bash
    php -S localhost:8000
    ```
-
-2. **Using XAMPP/WAMP/MAMP**
-   - Place files in the `htdocs` directory
-   - Access via `http://localhost/your-folder-name`
 
 ## Configuration
 
@@ -63,7 +59,7 @@ Create a `config.json` file in the root directory with your settings:
   "profileImage": "assets/images/default-avatar.png",
   "backgroundImage": "assets/images/space-bg.jpg",
   "favicon": "assets/images/favicon.ico",
-  
+
   "discord": {
     "enabled": true,
     "discordId": "123456789012345678",
@@ -71,7 +67,7 @@ Create a `config.json` file in the root directory with your settings:
     "useUsername": true,
     "useAvatar": true
   },
-  
+
   "embed": {
     "title": "Your Name",
     "description": "Check out my profile and social links!",
@@ -80,7 +76,7 @@ Create a `config.json` file in the root directory with your settings:
     "image_url": "https://example.com/embed-image.png",
     "thumbnail_url": "https://example.com/thumbnail.png"
   },
-  
+
   "buttons": [
     {
       "text": "GitHub",
