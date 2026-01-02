@@ -92,8 +92,7 @@
                     "text": "Pss: cURL this website !",
                     "icon": "assets/img/terminal-box-line.svg",
                     "id": "curl-btn",
-                    "jsFunction": "copyCurlCmd",
-                    "url": "#"
+                    "jsFunction": "copyCurlCmd"
                 }
             ]
         }
