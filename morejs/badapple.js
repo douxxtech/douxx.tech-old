@@ -31,7 +31,7 @@ async function playBadApl() {
     await new Promise(resolve => setTimeout(resolve, 5000));
 
     const frameDuration = metadata.playback.frameDuration || (1000 / metadata.ascii.fps);
-    const audio = new Audio('https://raw.githubusercontent.com/douxxtech/noskid.today/refs/heads/main/assets/audio/ba.mp3');
+    const audio = new Audio('https://raw.githubusercontent.com/dpipstudio/noskid.today/refs/heads/main/website/assets/audio/ba.mp3');
 
     await new Promise((resolve, reject) => {
       audio.addEventListener('canplaythrough', resolve, { once: true });
