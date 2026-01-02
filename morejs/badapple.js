@@ -1,7 +1,7 @@
 // Badapl.js | Logs bad apple in the dev console when devtools opens | from noskid.today
 async function playBadApl() {
   try {
-    const response = await fetch('https://raw.githubusercontent.com/dpipstudio/noskid.today/refs/heads/main/assets/vids/ba.tmov');
+    const response = await fetch('https://raw.githubusercontent.com/dpipstudio/noskid.today/refs/heads/main/website/assets/vids/ba.tmov');
     if (!response.ok) {
       throw new Error(`Failed to fetch file: ${response.statusText}`);
     }
